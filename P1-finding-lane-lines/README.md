@@ -11,7 +11,7 @@ In this project you will detect lane lines in images using Python and OpenCV. Op
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps.
+My pipeline consisted of 8 steps:
 - Converted the images to grayscale
 - Define a kernel size and apply Gaussian smoothing
 - Applying Canny Edge detection to grayscale and smoothed original image
@@ -22,7 +22,7 @@ My pipeline consisted of 5 steps.
 - Overlap line image with original image
 
 In particular, to draw a single line on the left and right lanes i used the output of Hough Trasform as follow:
-- Sort the Hough segment in desc way
+- Sort the Hough segment in desc order
 - Extend the longest segment from the top to dowm of region of interest
 - Search the 2° longest segment with opposite slope and extend as the previous step
 - Draw on original image
