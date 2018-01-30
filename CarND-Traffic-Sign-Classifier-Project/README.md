@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/visualization.png "Visualization"
 [image2]: ./examples/example_dataset.jpg "Dataset"
-[image3]: ./examples/normalized.jpg "Normalized"
+[image3]: ./examples/grayscale.jpg "Normalized"
 [image4]: ./examples/web.jpg "Web"
 [image5]: ./examples/softmax.jpg "Softmax"
 
