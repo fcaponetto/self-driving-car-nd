@@ -13,7 +13,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
+[image1]: ./examples/visualization.png "Visualization"
 [image2]: ./examples/example_dataset.jpg "Dataset"
 [image3]: ./examples/normalized.jpg "Normalized"
 [image4]: ./examples/web.jpg "Web"
