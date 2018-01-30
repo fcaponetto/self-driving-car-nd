@@ -75,14 +75,15 @@ Reducing the amount of input data, reducing the channels, the train step of the 
 #### Model Training
 I used my GPU (NVIDA GeForce GT 630 M) to tran the mode. It is slightly but ompared to the cpu, the training was about 3.3 times faster.
 
-EPOCHS = 20
-BATCH_SIZE = 128
-SIGMA = 0.1
-OPIMIZER: AdamOptimizer with learning rate = 0.001
+* EPOCHS = 20
+* BATCH_SIZE = 128
+* SIGMA = 0.1
+* OPIMIZER: AdamOptimizer with learning rate = 0.001
 
-Training Accuracy = 100% 
-Validation Accuracy = 91.5%
-Test Accuracy = 90.08%
+My results after training the model:
+* Training Accuracy = 100% 
+* Validation Accuracy = 91.5%
+* Test Accuracy = 90.08%
 
 My first approach was LeNet-5 shown in the udacity classroom. Despite it was a good starting point i got low validation accuracy about 85%. Therefore i decided to modify the network using Sermanet/LeCunn traffic sign classification paper.
 Adding one more convolutional layer, the newtwork got better results. Training for more than 20 epochs do not increase the validation accuracy instead, instead it was going to decrease. 
@@ -90,7 +91,7 @@ Adding one more convolutional layer, the newtwork got better results. Training f
 
 ### Test a Model on New Images
 
-Here are 7 examples I collected.
+Here are 6 examples I collected.
 
 ![alt text][image4] 
 
@@ -115,8 +116,5 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 ![alt text][image5] 
 
 For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
