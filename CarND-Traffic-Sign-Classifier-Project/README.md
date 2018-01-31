@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 [image4]: ./examples/web.jpg "Web"
 [image5]: ./examples/softmax.jpg "Softmax"
 [image6]: ./examples/softmax2.jpg "Softmax"
-[image3]: ./examples/softmax3.png "Softmax"
+[image7]: ./examples/softmax3.png "Softmax"
 
 ## Rubric Points
 
