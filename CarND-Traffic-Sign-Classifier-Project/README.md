@@ -20,6 +20,7 @@ The goals / steps of this project are the following:
 [image5]: ./examples/softmax.jpg "Softmax"
 [image6]: ./examples/softmax2.jpg "Softmax"
 [image7]: ./examples/softmax3.png "Softmax"
+[image8]: ./images/modifiedLeNet.jpeg "Model"
 
 ## Rubric Points
 
@@ -56,6 +57,8 @@ Reducing the amount of the the channels, the train step of the model is signific
 #### Model Architecture
  
 I use a convolutional neuronal network to classify the traffic signs. The input of the network is an 32x32x1 image and the output is the probabilty of each of the 43 possible traffic signs.
+
+![alt text][image8]
  
  My final model consisted of the following layers:
 
@@ -65,8 +68,8 @@ I use a convolutional neuronal network to classify the traffic signs. The input 
 | Max pooling 1			| 2x2 stride, 2x2 window						|28x28x6|14x14x6|
 | Convolution 2a 5x5 	    | 1x1 stride, valid padding, RELU activation 	|14x14x6|10x10x16|
 | Max pooling 2a			| 2x2 stride, 2x2 window	   					|10x10x16|5x5x16|
-| Convolution 2b 6x6 		| 1x1 stride, valid padding, RELU activation    |14x14x6|10x10x486|
-| Flatten				| 3 dimensions -> 1 dimension					|400| 486|
+| Convolution 2b 6x6 		| 1x1 stride, valid padding, RELU activation    |14x14x6|9x9x6|
+| Flatten				| 3 dimensions -> 1 dimension					|5x5x16 and 9x9x6 | 886|
 | Fully Connected | connect every neuron from layer above			|886|84|
 | Fully Connected | output = number of traffic signs in data set	|84|**43**|
 
