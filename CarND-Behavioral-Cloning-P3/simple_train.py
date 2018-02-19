@@ -20,7 +20,7 @@ def generator(images_path, samples, batch_size=32):
             angles = []
             for batch_sample in batch_samples:
                 for index in range(3):
-                    current_path = images_path + batch_sample[0].split('/')[-1]
+                    current_path = images_path + batch_sample[index].split('/')[-1]
                     image = cv2.imread(current_path)
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
                     images.append(image)
@@ -30,12 +30,9 @@ def generator(images_path, samples, batch_size=32):
                         steering_angle += correction
                     if index == 2:
                         steering_angle -= correction
-                    images.append(image)
-                    angles.append(steering_angle)
 
                     images.append(image)
                     angles.append(steering_angle)
-
 
             augmented_images, augmented_angles = [], []
             for image, measurement in zip(images, angles):
