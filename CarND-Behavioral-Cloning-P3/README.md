@@ -100,7 +100,7 @@ For details about how I created the training data, see the next section.
 
 My first step was to use a convolution neural network model similar with few layer and I thought this model might be appropriate because the number of feature to analyze from image could be not too much. Tring this approch, on the first track, the car went straight to the lake. I needed a more accurate model and some pre-processing data.
 
-In order to gauge how well the model was working, i decided to use [Nvida Model for Autonomous Car] (https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/). Augmented the data by adding the same image flipped with a negative angle and using the central camera plus the sides cames (right and left) helped the car to stay (more or less) in the center of the lane.
+In order to gauge how well the model was working, i decided to use [Nvida Model for Autonomous Car](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/). Augmented the data by adding the same image flipped with a negative angle and using the central camera plus the sides cames (right and left) helped the car to stay (more or less) in the center of the lane.
 
 #### 2. Creation of the Training Set & Training Process
 
