@@ -110,8 +110,8 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 I then recorded used the sides camera (with correction stearing angle of 0.2°). In that way, you should simulate your vehicle being in different positions:
 
-![alt text][image2]
 ![alt text][image3]
+![alt text][image2]
 
 Then I repeated this process on track two in order to get more data points.
 
