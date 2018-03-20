@@ -21,6 +21,8 @@ The goals / steps of this project are the following:
 [img05]: ./readme_images/binary_threashold_test_1.jpg "Binary Threadhold test 1"
 [img06]: ./readme_images/binary_threashold_test_2.jpg "Binary Threadhold test 2"
 [img07]: ./readme_images/fill_lane.jpg "Fill Lane"
+[vid01]: ./readme_images/project_video_output.gif "Output Gif"
+[vid02]: ./readme_images/challenge_video_output.gif "Output Challenge"
 
 ### Step1: Camera Calibration
 
@@ -54,7 +56,7 @@ I tried different combination of color space, in paticular,
 
 ![alt text][img06]
 
-At the end, i decide to use the combination of the best yellow and with line, that's L channel + B channel.
+At the end, i decided to use the combination of the best yellow and with line, that's L channel + B channel.
 
 ### Step 4: Fit Lane
 
@@ -74,3 +76,9 @@ After using the polynomials I was able to calculate the position of the vehicle 
 
 The final step was to expand the pipeline to process videos frame-by-frame, to simulate what it would be like to process an image stream in real time on an actual vehicle.
 
+|Project Video|Challenge Video|
+|-------------|-------------|
+|![alt text][vid01]|![alt text][vid02]|
+
+### Limitations 
+The problems I encountered were almost exclusively due to lighting conditions, shadows. It shows a road in basically ideal conditions, with fairly distinct lane lines, and on a clear day, with some problem when the line are not well defined or appears some shadows on the lane.
