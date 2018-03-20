@@ -1,16 +1,4 @@
 ## Advanced Lane Finding
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
-
-
-In this project, your goal is to write a software pipeline to identify the lane boundaries in a video, but the main output or product we want you to create is a detailed writeup of the project.  Check out the [writeup template](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup.  
-
-Creating a great writeup:
----
-A great writeup should include the rubric points as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
-
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
-
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
 
 The Project
 ---
@@ -26,14 +14,63 @@ The goals / steps of this project are the following:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
-The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
+[img01]: ./readme_images/corners.jpg "Chessboard Calibration"
+[img02]: ./readme_images/undistort_chessboard.jpg "Undistort Chessboard"
+[img03]: ./readme_images/undistort_car.jpg "Undistort Car"
+[img04]: ./readme_images/warped_lane.jpg "Warped Lane"
+[img05]: ./readme_images/binary_threashold_test_1.jpg "Binary Threadhold test 1"
+[img06]: ./readme_images/binary_threashold_test_2.jpg "Binary Threadhold test 2"
+[img07]: ./readme_images/fill_lane.jpg "Fill Lane"
 
-To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `ouput_images`, and include a description in your writeup for the project of what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
+### Step1: Camera Calibration
 
-The `challenge_video.mp4` video is an extra (and optional) challenge for you if you want to test your pipeline under somewhat trickier conditions.  The `harder_challenge.mp4` video is another optional challenge and is brutal!
+The OpenCV functions *findChessboardCorners* and *calibrateCamera* are two useful function provided for image calibration. Taking different images from different angles with the same camera, the pixel locations of the internal chessboard corners determined by *findChessboardCorners*, are fed to *calibrateCamera* which returns camera calibration and distortion coefficients. 
 
-If you're feeling ambitious (again, totally optional though), don't stop there!  We encourage you to go out and take video of your own, calibrate your camera and show us how you would implement this project from scratch!
+![alt text][img01]
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+These can then be used by the OpenCV *undistort* function to undo the effects of lent distortion .
+
+![alt text][img02]
+
+![alt text][img03]
+
+### Step 2: Perspective Transform
+
+With this step we wanto to transform the undistorted image to a "birds eye view" of the road which focuses only on the lane lines.
+To achieve the perspective transformation OpenCV provide the functions *getPerspectiveTransform* and *warpPerspective* which take a matrix of four source points on the undistorted image and remaps them to four destination points on the warped image.
+
+[img04]: ./readme_images/warped_lane.jpg "Warped Lane"
+
+### Step 3: Binary Thresholds
+
+The goal of this step is to starting from the colored warped image, trasporming it wiht different color spaces and create binary thresholded images which highlight only the lane lines and ignore everything else.
+I tried different combination of color space, in paticular,
+
+* The S Channel from the HLS color space, did a fairly good job of identifying both the white and yellow lane lines.
+* The L Channel from the HLS color space, did an almost perfect job of picking up the white lane lines, but ignore the yellow lines.
+* The B channel from the Lab color space, did a better job than the S channel in identifying the yellow lines, but ignore the white lines.
+
+![alt text][img05]
+
+![alt text][img06]
+
+At the end, i decide to use the combination of the best yellow and with line, that's L channel + B channel.
+
+### Step 4: Fit Lane
+
+The function *fit_lane* identify lane lines and fit a second order polynomial to both right and left lane lines:
+* First it computes a histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines.
+* Identifying all non zero pixels around histogram peaks using the numpy function numpy.nonzero().
+* The function then identifies 9 windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below
+
+After using the polynomials I was able to calculate the position of the vehicle with respect to center:
+
+* Calculated the distance from center
+* The radius of curvature is based upon [this website](http://www.intmath.com/applications-differentiation/8-radius-curvature.php)
+
+![alt text][img07]
+
+### Video Processing Pipeline
+
+The final step was to expand the pipeline to process videos frame-by-frame, to simulate what it would be like to process an image stream in real time on an actual vehicle.
 
