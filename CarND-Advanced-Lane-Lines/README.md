@@ -76,9 +76,9 @@ After using the polynomials I was able to calculate the position of the vehicle 
 
 The final step was to expand the pipeline to process videos frame-by-frame, to simulate what it would be like to process an image stream in real time on an actual vehicle.
 
-|Project Video|Challenge Video|
-|-------------|-------------|
-|![alt text][vid01]|![alt text][vid02]|
+|Project Video|
+|-------------|
+|![alt text][vid01]|
 
 ### Limitations 
 The problems I encountered were almost exclusively due to lighting conditions, shadows. It shows a road in basically ideal conditions, with fairly distinct lane lines, and on a clear day, with some problem when the line are not well defined or appears some shadows on the lane.
