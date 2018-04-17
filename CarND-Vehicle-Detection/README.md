@@ -1,8 +1,13 @@
 # Vehicle Detection
 The main goal of the project is to create a software pipeline to identify vehicles in a video from a front-facing camera on a car.
 
-[img01]: ./output_images/output_images
-[vid01]: ./project_video_output.gif "Output Gif"
+[img01]: ./output_images/output_images.jpg "Random images"
+[img02]: ./output_images/hog_transform.jpg "HOG"
+[img03]: ./output_images/find_car.jpg "Find Cars"
+[img04]: ./output_images/heatmap.jpg "Heatmap"
+[img05]: ./output_images/heatmap_threashold.jpg "Heatmap Threashold"
+[img06]: ./output_images/final.jpg "Final"
+[vid01]: (./project_video_output.gif "Output Gif")
 
 |Project Video|
 |-------------|
@@ -19,12 +24,48 @@ The goals / steps of this project are the following:
 
 Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) examples to train your classifier.  These example images come from a combination of the [GTI vehicle image database](http://www.gti.ssr.upm.es/data/Vehicle_database.html), the [KITTI vision benchmark suite](http://www.cvlibs.net/datasets/kitti/), and examples extracted from the project video itself.   You are welcome and encouraged to take advantage of the recently released [Udacity labeled dataset](https://github.com/udacity/self-driving-car/tree/master/annotations) to augment your training data.  
 
-Some example images for testing your pipeline on single frames are located in the `test_images` folder.  To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `ouput_images`, and include them in your writeup for the project by describing what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
+### Histogram of Oriented Gradients (HOG)
 
-**As an optional challenge** Once you have a working pipeline for vehicle detection, add in your lane-finding algorithm from the last project to do simultaneous lane-finding and vehicle detection!
+The figure below shows a random sample of vehicle and non-vehicle images from both classes of the dataset: 
 
-**If you're feeling ambitious** (also totally optional though), don't stop there!  We encourage you to go out and take video of your own, and show us how you would implement this project on a new video!
+![alt text][img01]
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+Using the code for extracting HOG features from an image, defined by the method get_hog_features, we can get for and image test the figure below that shows a comparison of a car image and its associated histogram of oriented gradients:
 
+![alt text][img02]
+
+The method extract_features with some parameters extract features for the entire dataset. These feature sets are combined and a label vector is defined (1 for cars, 0 for non-cars).
+
+Final parameter for feature extraction:
+``
+YCrCb colorspace, 9 orientations, 8 pixels per cell, 2 cells per block, and ALL channels of the colorspace.
+``
+
+### Sliding Window Searching
+
+I used the method find_cars from the lesson materials. The method combines HOG feature extraction with a sliding window search. It allows to search a car in a desired region of the frame with a desired window size and the HOG features are extracted for the entire image (or a selected portion of it).
+
+![alt text][img03]
+
+The classifier successfully finds cars on the test images. However, there is a false positive example, therefore i applied the heatmap filter with threasholding:
+
+![alt text][img04]
+
+![alt text][img05]
+
+And the final detection area: 
+
+![alt text][img06]
+
+### Video Implementation
+The video implementation consist of pipeline of previous approch for each video frame:
+* find cars using sliding window for subset of the frame
+* apply heatmap threashold
+* print the filtered boxes
+
+### Discussion 
+
+The main useful approach I used is HOG subsampling because of which the video processing time is much reduced and pipeline is efficient. Anyway i faced with the followig limitations:
+
+* The algorithm may fail in case of difficult light conditions
+* The algorithm has some problems in case of car overlaps to anothers
