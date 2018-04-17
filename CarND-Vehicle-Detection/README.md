@@ -1,7 +1,7 @@
 # Vehicle Detection
 The main goal of the project is to create a software pipeline to identify vehicles in a video from a front-facing camera on a car.
 
-[img01]: ./output_images/output_images.jpg "Random images"
+[img01]: ./output_images/example_images.png "Random images"
 [img02]: ./output_images/hog_transform.jpg "HOG"
 [img03]: ./output_images/find_car.jpg "Find Cars"
 [img04]: ./output_images/heatmap.jpg "Heatmap"
