@@ -7,7 +7,7 @@ The main goal of the project is to create a software pipeline to identify vehicl
 [img04]: ./output_images/heatmap.jpg "Heatmap"
 [img05]: ./output_images/heatmap_threashold.jpg "Heatmap Threashold"
 [img06]: ./output_images/final.jpg "Final"
-[vid01]: (./project_video_output.gif "Output Gif")
+[vid01]: ./project_video_output.gif "Output Gif"
 
 |Project Video|
 |-------------|
