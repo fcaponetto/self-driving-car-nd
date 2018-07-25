@@ -28,7 +28,7 @@ By default, environments are installed into the envs directory in your conda dir
 conda create --name myenv python=x.y
 ```
 
-Creating an environment from an environment.yml file
+Creating an environment from an environment.yml file. The CarND starter kit, you can find here: [CarND Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
 ```
 conda env create -f environment.yml
 ```
